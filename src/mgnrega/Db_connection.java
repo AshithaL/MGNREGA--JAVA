@@ -6,7 +6,6 @@ public class Db_connection {
 	public Connection con;
 	
 	public Connection connect() {
-	Connection con = null;
 	try{  
 		Class.forName("com.mysql.jdbc.Driver");  
 		con=DriverManager.getConnection(  
