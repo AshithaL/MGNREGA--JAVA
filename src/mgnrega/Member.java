@@ -22,7 +22,7 @@ public class Member {
         {
             case 1:
                 view_profile();
-                break;+ "2. View complaints \n"
+                break;
             case 2:
                 complaint();
               
