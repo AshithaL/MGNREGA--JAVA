@@ -22,7 +22,7 @@ public class Member {
         {
             case 1:
                 view_profile();
-                break;
+                break;+ "2. View complaints \n"
             case 2:
                 complaint();
               
@@ -33,13 +33,49 @@ public class Member {
 
     }
 	
-	private void view_profile() {
-		// TODO Auto-generated method stub
+	public void view_profile() throws SQLException, ParseException, IOException {
+		try {
+            Statement statement = con.createStatement();
+            System.out.println("Enter Member id");
+			String mid = sc_obj.nextLine();
+            ResultSet res = statement.executeQuery("select * from Member where id = '" + mid + "'");
+            while (res.next()) {
+                System.out.println("1.Member Id: " + res.getInt(1));
+                System.out.println("2.Name: " + res.getString(2));
+                System.out.println("3.Email_id: " + res.getString(3));
+                System.out.println("4.Area: " + res.getString(5));
+                System.out.println("5.Pincode: " + res.getInt(6));        
+            }
+            statement.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error is:" + e.getMessage());
+        } finally {
+            functions();
+        }
 		
 	}
 
-	private void complaint() {
-		// TODO Auto-generated method stub
+	private void complaint() throws SQLException, ParseException, IOException {
+		try {
+            Statement statement = con.createStatement();
+            sc_obj.nextLine();
+            System.out.println("Enter Member id");
+			String mid = sc_obj.nextLine();
+            System.out.println("Write Complaint:");
+            String complaint = sc_obj.nextLine();
+            System.out.println("Enter GPM id");
+			String gid = sc_obj.nextLine();
+            statement.execute("insert into Complaints(Mid,Complaint,Gpm_id)" +
+                    "values('" + mid + "','" + complaint + "','" + gid + "')");
+            System.out.println("Complaint filed successfully!");
+            statement.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error is:" + e.getMessage());
+        } finally {
+            functions();
+        }
 		
 	}
 

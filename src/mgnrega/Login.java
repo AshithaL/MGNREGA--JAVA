@@ -14,7 +14,7 @@ public class Login {
 	Member member = new Member();
 	
 	public void login_choice() throws SQLException, ParseException, IOException {
-		System.out.println("Welcome...Choose the appropriate option \n"
+		System.out.println("Welcome to MGNREGA...Choose the appropriate option \n"
 				+ "1. BDO Login \n"
 				+ "2. GPM Login \n"
 				+ "3. Member Login");

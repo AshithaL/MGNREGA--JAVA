@@ -61,8 +61,58 @@ public class BDO {
         }
 		
 	}
-	private void updateProject() {
-		
+	private void updateProject() throws IOException, SQLException, ParseException {
+		try {
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+			Statement statement = con.createStatement();
+			System.out.print("Enter Project Id: ");
+			String id = bufferedReader.readLine();
+
+			ResultSet pid = statement.executeQuery("select * from Project where Id = '" + id + "' ");
+
+			System.out.println("What would you want to update ?\n"
+					+ "1. Total Members \n"
+					+ "2. Cost estimated \n"
+					+ "3. Is allocated to \n");
+
+			int cg = sc_obj.nextInt();
+
+			switch (cg) {
+
+			case 1:
+				System.out.println("Enter Total members:");
+				String tot = bufferedReader.readLine();
+				statement.executeUpdate("Update Project set Total_members ='" + tot + "' where Id = '" + id + "' ");
+				con.close();
+				System.out.println("Done");
+				break;
+
+			case 2:
+				System.out.println("Enter Cost estimated:");
+				String ce = bufferedReader.readLine();
+				statement.executeUpdate("Update Project set Cost_estimated ='" + ce + "' where Id = '" + id + "' ");
+				System.out.println("Cost estimated has changed");
+				con.close();
+				break;
+
+			case 3:
+				System.out.println("Enter to allocate");
+				String alloc = bufferedReader.readLine();
+				statement.executeUpdate("Update Project set Area ='" + alloc + "' where Id = '" + id + "' ");
+				System.out.println("Done");
+				con.close();
+				break;
+
+			default:
+				System.out.println("Wrong option");
+				break;
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Error is" + e.getMessage());
+		} finally {
+			functions();
+		}
 		
 	}
 	public void createProject() throws SQLException, ParseException, IOException {
@@ -119,7 +169,7 @@ public class BDO {
 		try {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             Statement statement = con.createStatement();
-            System.out.print("Enter your Email_Id: ");
+            System.out.print("Enter GPM Email_Id: ");
             String Email = bufferedReader.readLine();
             
             ResultSet email = statement.executeQuery("select * from GPM where Email_id = '" + Email + "' ");
@@ -137,7 +187,7 @@ public class BDO {
 			case 1:
 				System.out.println("Enter new name:");
 				String name = bufferedReader.readLine();
-				statement.executeUpdate("Update GPM set Name ='" + name + "' where Email_id = '" + email + "' ");
+				statement.executeUpdate("Update GPM set Name ='" + name + "' where Email_id = '" + Email + "' ");
                 con.close();
                 System.out.println("Done");
 				break;
@@ -145,7 +195,7 @@ public class BDO {
 			case 2:
 				System.out.println("Enter new password:");
 				String pw = bufferedReader.readLine();
-				statement.executeUpdate("Update GPM set Password ='" + pw + "' where Email_id = '" + email + "' ");
+				statement.executeUpdate("Update GPM set Password ='" + pw + "' where Email_id = '" + Email + "' ");
 				System.out.println("Done");
                 con.close();
 				break;
@@ -153,7 +203,7 @@ public class BDO {
 			case 3:
 				System.out.println("Enter to update Area");
 				String area = bufferedReader.readLine();
-				statement.executeUpdate("Update GPM set Area ='" + area + "' where Email_id = '" + email + "' ");
+				statement.executeUpdate("Update GPM set Area ='" + area + "' where Email_id = '" + Email + "' ");
 				System.out.println("Done");
                 con.close();
 				break;
@@ -161,7 +211,7 @@ public class BDO {
 			case 4:
 				System.out.println("Enter to update Pincode");
 				String pin = bufferedReader.readLine();
-				statement.executeUpdate("Update GPM set Pincode ='" + pin + "' where Email_id = '" + email + "' ");
+				statement.executeUpdate("Update GPM set Pincode ='" + pin + "' where Email_id = '" + Email + "' ");
 				System.out.println("Done");
                 con.close();
 				break;
