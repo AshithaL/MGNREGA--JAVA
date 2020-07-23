@@ -6,6 +6,7 @@ public class Db_connection {
 	public Connection con;
 	
 	public Connection connect() {
+	/* A Mysql database connection function */	
 	try{  
 		Class.forName("com.mysql.jdbc.Driver");  
 		con=DriverManager.getConnection(  
@@ -13,8 +14,6 @@ public class Db_connection {
 	    System.out.println("Connection is created succcessfully");
 	    return con;
 	    }catch(Exception e){ System.out.println(e);}
-	
 		return null; 		
 	}
-
 }
