@@ -14,7 +14,30 @@ There are several functionalities with respect to-
  
 **Member** - Members who are under a GPM.
 
+## Credentials
+
+- BDO 
+
+Email_id - Bdo123@gmail.com
+
+Password - Bdo@123
+
+- GPM 
+
+Email_id - Gpm123@gmail.com
+
+Password - Gpm@123
+
+- Member 
+
+Email_id - Sam.s@gmail.com
+
+Password - Sam@123 
+
 ## Run
+
+Go to src/mgnrega
+
 ```
 Login.java
 ```
